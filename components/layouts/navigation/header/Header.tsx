@@ -19,7 +19,7 @@ export interface tuserNavigation {
   href: string;
 }
 
-function classNames(...classes) {
+function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ');
 }
 
