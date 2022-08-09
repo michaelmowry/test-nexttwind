@@ -15,7 +15,7 @@ const duser = {
 
 const dnavigation = [
   { name: 'Dashboard', href: '/dashboard', current: false },
-  { name: 'Solve', href: '#', current: false },
+  { name: 'Solve', href: '/solve', current: false },
   { name: 'Solutions', href: '#', current: false },
   { name: 'Problems', href: '#', current: false },
 ];
@@ -44,8 +44,7 @@ const PrimaryLayout: React.FC<IPrimaryLayout> = ({
           navigation={dnavigation}
           userNavigation={duserNavigation}
         />
-        <main className="px-5">{children}</main>
-        <div className="m-auto" />
+        <main className="min-w-full min-h-full px-5">{children}</main>
         <Footer />
       </div>
     </>

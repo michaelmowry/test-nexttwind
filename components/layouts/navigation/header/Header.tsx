@@ -1,7 +1,8 @@
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
+import Image from 'next/image';
+import Link from 'next/link';
 import { Fragment } from 'react';
-
 export interface tuser {
   name: string;
   email: string;
@@ -40,28 +41,32 @@ const Header: React.FC<IHeader> = ({ navigation, userNavigation, user }) => {
                 <div className="flex items-center justify-between h-16">
                   <div className="flex items-center">
                     <div className="flex-shrink-0">
-                      <img
-                        className="w-8 h-8"
+                      <Image
                         src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
+                        width="32"
+                        height="32"
                         alt="Workflow"
                       />
                     </div>
                     <div className="hidden md:block">
                       <div className="flex items-baseline ml-10 space-x-4">
                         {navigation.map((item) => (
-                          <a
+                          <Link
                             key={item.name}
                             href={item.href}
-                            className={classNames(
-                              item.current
-                                ? 'bg-gray-900 text-white'
-                                : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                              'px-3 py-2 rounded-md text-sm font-medium'
-                            )}
                             aria-current={item.current ? 'page' : undefined}
                           >
-                            {item.name}
-                          </a>
+                            <a
+                              className={classNames(
+                                item.current
+                                  ? 'bg-gray-900 text-white'
+                                  : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                'px-3 py-2 rounded-md text-sm font-medium'
+                              )}
+                            >
+                              {item.name}{' '}
+                            </a>
+                          </Link>
                         ))}
                       </div>
                     </div>
@@ -81,9 +86,11 @@ const Header: React.FC<IHeader> = ({ navigation, userNavigation, user }) => {
                         <div>
                           <Menu.Button className="flex items-center max-w-xs text-sm bg-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                             <span className="sr-only">Open user menu</span>
-                            <img
+                            <Image
                               className="w-8 h-8 rounded-full"
                               src={user.imageUrl}
+                              height="40"
+                              width="40"
                               alt=""
                             />
                           </Menu.Button>
@@ -101,15 +108,16 @@ const Header: React.FC<IHeader> = ({ navigation, userNavigation, user }) => {
                             {userNavigation.map((item) => (
                               <Menu.Item key={item.name}>
                                 {({ active }) => (
-                                  <a
-                                    href={item.href}
-                                    className={classNames(
-                                      active ? 'bg-gray-100' : '',
-                                      'block px-4 py-2 text-sm text-gray-700'
-                                    )}
-                                  >
-                                    {item.name}
-                                  </a>
+                                  <Link href={item.href}>
+                                    <a
+                                      className={classNames(
+                                        active ? 'bg-gray-100' : '',
+                                        'block px-4 py-2 text-sm text-gray-700'
+                                      )}
+                                    >
+                                      {item.name}
+                                    </a>
+                                  </Link>
                                 )}
                               </Menu.Item>
                             ))}
@@ -157,9 +165,11 @@ const Header: React.FC<IHeader> = ({ navigation, userNavigation, user }) => {
                 <div className="pt-4 pb-3 border-t border-gray-700">
                   <div className="flex items-center px-5">
                     <div className="flex-shrink-0">
-                      <img
-                        className="w-10 h-10 rounded-full"
+                      <Image
+                        className="rounded-full"
                         src={user.imageUrl}
+                        width="40"
+                        height="40"
                         alt=""
                       />
                     </div>
