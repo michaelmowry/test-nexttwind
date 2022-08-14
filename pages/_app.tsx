@@ -7,13 +7,13 @@ interface AppPropsWithLayout extends AppProps {
   Component: NextPageWithLayout;
 }
 
-function App({ Component, pageProps }: AppPropsWithLayout) {
+export default function App({ Component, pageProps }: AppPropsWithLayout) {
   // Use the layout defined at the page level, if available
   const getLayout = Component.getLayout || ((page) => page);
 
   return (
-    <SessionProvider>{getLayout(<Component {...pageProps} />)}</SessionProvider>
+    <SessionProvider session={pageProps.session} refetchInterval={0}>
+      {getLayout(<Component {...pageProps} />)}
+    </SessionProvider>
   );
 }
-
-export default App;
