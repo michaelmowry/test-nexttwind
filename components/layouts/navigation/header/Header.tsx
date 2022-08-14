@@ -2,7 +2,8 @@ import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
+
 export interface tuser {
   name: string;
   email: string;
@@ -25,12 +26,13 @@ function classNames(...classes: any) {
 }
 
 export interface IHeader {
-  navigation: tnavigation[];
-  userNavigation: tuserNavigation[];
-  user: tuser;
+  navigation: tnavigation[] | null;
+  userNavigation: tuserNavigation[] | null;
+  user: tuser | null;
 }
 
 const Header: React.FC<IHeader> = ({ navigation, userNavigation, user }) => {
+  const [loggedIn, setLoggedIn] = useState(false);
   return (
     <>
       <div className="min-w-full min-h-full">
@@ -48,82 +50,91 @@ const Header: React.FC<IHeader> = ({ navigation, userNavigation, user }) => {
                         alt="Workflow"
                       />
                     </div>
-                    <div className="hidden md:block">
-                      <div className="flex items-baseline ml-10 space-x-4">
-                        {navigation.map((item) => (
-                          <Link
-                            key={item.name}
-                            href={item.href}
-                            aria-current={item.current ? 'page' : undefined}
-                          >
-                            <a
-                              className={classNames(
-                                item.current
-                                  ? 'bg-gray-900 text-white'
-                                  : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                                'px-3 py-2 rounded-md text-sm font-medium'
-                              )}
+                    {navigation && navigation.length > 0 && (
+                      <div className="hidden md:block">
+                        <div className="flex items-baseline ml-10 space-x-4">
+                          {navigation.map((item) => (
+                            <Link
+                              key={item.name}
+                              href={item.href}
+                              aria-current={item.current ? 'page' : undefined}
                             >
-                              {item.name}{' '}
-                            </a>
-                          </Link>
-                        ))}
+                              <a
+                                className={classNames(
+                                  item.current
+                                    ? 'bg-gray-900 text-white'
+                                    : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                  'px-3 py-2 rounded-md text-sm font-medium'
+                                )}
+                              >
+                                {item.name}{' '}
+                              </a>
+                            </Link>
+                          ))}
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </div>
                   <div className="hidden md:block">
                     <div className="flex items-center ml-4 md:ml-6">
-                      <button
-                        type="button"
-                        className="p-1 text-gray-400 bg-gray-800 rounded-full hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
-                      >
-                        <span className="sr-only">View notifications</span>
-                        <BellIcon className="w-6 h-6" aria-hidden="true" />
-                      </button>
-
-                      {/* Profile dropdown */}
-                      <Menu as="div" className="relative ml-3">
-                        <div>
-                          <Menu.Button className="flex items-center max-w-xs text-sm bg-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-                            <span className="sr-only">Open user menu</span>
-                            <Image
-                              className="w-8 h-8 rounded-full"
-                              src={user.imageUrl}
-                              height="40"
-                              width="40"
-                              alt=""
-                            />
-                          </Menu.Button>
-                        </div>
-                        <Transition
-                          as={Fragment}
-                          enter="transition ease-out duration-100"
-                          enterFrom="transform opacity-0 scale-95"
-                          enterTo="transform opacity-100 scale-100"
-                          leave="transition ease-in duration-75"
-                          leaveFrom="transform opacity-100 scale-100"
-                          leaveTo="transform opacity-0 scale-95"
-                        >
-                          <Menu.Items className="absolute right-0 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                            {userNavigation.map((item) => (
-                              <Menu.Item key={item.name}>
-                                {({ active }) => (
-                                  <Link href={item.href}>
-                                    <a
-                                      className={classNames(
-                                        active ? 'bg-gray-100' : '',
-                                        'block px-4 py-2 text-sm text-gray-700'
-                                      )}
-                                    >
-                                      {item.name}
-                                    </a>
-                                  </Link>
-                                )}
-                              </Menu.Item>
-                            ))}
-                          </Menu.Items>
-                        </Transition>
-                      </Menu>
+                      {!loggedIn ? (
+                        <Link key="signin" href="/signin">
+                          <a className="px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-md">
+                            Login
+                          </a>
+                        </Link>
+                      ) : (
+                        <>
+                          <button
+                            type="button"
+                            className="p-1 text-gray-400 bg-gray-800 rounded-full hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                          >
+                            <span className="sr-only">View notifications</span>
+                            <BellIcon className="w-6 h-6" aria-hidden="true" />
+                          </button>
+                          <Menu as="div" className="relative ml-3">
+                            <div>
+                              <Menu.Button className="flex items-center max-w-xs text-sm bg-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                                <Image
+                                  className="w-8 h-8 rounded-full"
+                                  src={user ? user.imageUrl : ''}
+                                  height="40"
+                                  width="40"
+                                  alt=""
+                                />
+                              </Menu.Button>
+                            </div>
+                            <Transition
+                              as={Fragment}
+                              enter="transition ease-out duration-100"
+                              enterFrom="transform opacity-0 scale-95"
+                              enterTo="transform opacity-100 scale-100"
+                              leave="transition ease-in duration-75"
+                              leaveFrom="transform opacity-100 scale-100"
+                              leaveTo="transform opacity-0 scale-95"
+                            >
+                              <Menu.Items className="absolute right-0 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                {userNavigation?.map((item) => (
+                                  <Menu.Item key={item.name}>
+                                    {({ active }) => (
+                                      <Link href={item.href}>
+                                        <a
+                                          className={classNames(
+                                            active ? 'bg-gray-100' : '',
+                                            'block px-4 py-2 text-sm text-gray-700'
+                                          )}
+                                        >
+                                          {item.name}
+                                        </a>
+                                      </Link>
+                                    )}
+                                  </Menu.Item>
+                                ))}
+                              </Menu.Items>
+                            </Transition>
+                          </Menu>
+                        </>
+                      )}
                     </div>
                   </div>
                   <div className="flex -mr-2 md:hidden">
@@ -145,7 +156,7 @@ const Header: React.FC<IHeader> = ({ navigation, userNavigation, user }) => {
 
               <Disclosure.Panel className="md:hidden">
                 <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                  {navigation.map((item) => (
+                  {navigation?.map((item) => (
                     <Disclosure.Button
                       key={item.name}
                       as="a"
@@ -167,7 +178,7 @@ const Header: React.FC<IHeader> = ({ navigation, userNavigation, user }) => {
                     <div className="flex-shrink-0">
                       <Image
                         className="rounded-full"
-                        src={user.imageUrl}
+                        src={user?.imageUrl}
                         width="40"
                         height="40"
                         alt=""
@@ -175,10 +186,10 @@ const Header: React.FC<IHeader> = ({ navigation, userNavigation, user }) => {
                     </div>
                     <div className="ml-3">
                       <div className="text-base font-medium leading-none text-white">
-                        {user.name}
+                        {user?.name}
                       </div>
                       <div className="text-sm font-medium leading-none text-gray-400">
-                        {user.email}
+                        {user?.email}
                       </div>
                     </div>
                     <button
@@ -190,7 +201,7 @@ const Header: React.FC<IHeader> = ({ navigation, userNavigation, user }) => {
                     </button>
                   </div>
                   <div className="px-2 mt-3 space-y-1">
-                    {userNavigation.map((item) => (
+                    {userNavigation?.map((item) => (
                       <Disclosure.Button
                         key={item.name}
                         as="a"

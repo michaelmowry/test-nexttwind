@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Footer from '../navigation/footer/Footer';
 import Header from '../navigation/header/Header';
 
-export interface IPrimaryLayout extends React.ComponentPropsWithoutRef<'div'> {
+export interface IAppLayout extends React.ComponentPropsWithoutRef<'div'> {
   justify?: 'items-center' | 'items-start';
 }
 
@@ -24,11 +24,11 @@ const duserNavigation = [
   { name: 'Progress Report', href: '#' },
   { name: 'Connections', href: '#' },
   { name: 'History', href: '#' },
-  { name: 'Profile', href: '#' },
+  { name: 'Profile', href: '/login' },
   { name: 'Settings', href: '#' },
 ];
 
-const PrimaryLayout: React.FC<IPrimaryLayout> = ({
+const AppLayout: React.FC<IAppLayout> = ({
   children,
   justify = 'items-center',
   ...divProps
@@ -51,4 +51,4 @@ const PrimaryLayout: React.FC<IPrimaryLayout> = ({
   );
 };
 
-export default PrimaryLayout;
+export default AppLayout;

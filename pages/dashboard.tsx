@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import PrimaryLayout from '../components/layouts/primary/PrimaryLayout';
+import PrimaryLayout from '../components/layouts/app/AppLayout';
 import { NextPageWithLayout } from './page';
 
 const Dashboard: NextPageWithLayout = () => {
