@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import SiteLayout from '../components/layouts/site/SiteLayout';
+import SiteLayout from '../components/Layouts/SiteLayout/SiteLayout';
 import { NextPageWithLayout } from './page';
 
 const Home: NextPageWithLayout = () => {
@@ -10,14 +10,15 @@ const Home: NextPageWithLayout = () => {
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="lg:text-center">
           <h2 className="text-base font-semibold tracking-wide text-indigo-600 uppercase">
-            Transactions
+            Solvether
           </h2>
           <p className="mt-2 text-3xl font-extrabold leading-8 tracking-tight text-gray-900 sm:text-4xl">
-            A better way to send money
+            Solving Problems Together
           </p>
           <p className="max-w-2xl mt-4 text-xl text-gray-500 lg:mx-auto">
-            Lorem ipsum dolor sit amet consect adipisicing elit. Possimus magnam
-            voluptatum cupiditate veritatis in accusamus quisquam.
+            Problems can be difficult.
+            <br />
+            Together we will solve them.
           </p>
         </div>
 
@@ -25,121 +26,67 @@ const Home: NextPageWithLayout = () => {
           <dl className="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10">
             <div className="relative">
               <dt>
-                <div className="absolute flex items-center justify-center w-12 h-12 text-white bg-indigo-500 rounded-md">
-                  <svg
-                    className="w-6 h-6"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="2"
-                    stroke="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
-                    />
-                  </svg>
+                <div className="absolute flex items-center justify-center w-12 h-12 text-xl font-bold text-white bg-indigo-500 rounded-md">
+                  1
                 </div>
                 <p className="ml-16 text-lg font-medium leading-6 text-gray-900">
-                  Competitive exchange rates
+                  Present a Problem
                 </p>
               </dt>
               <dd className="mt-2 ml-16 text-base text-gray-500">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Maiores impedit perferendis suscipit eaque, iste dolor
-                cupiditate blanditiis ratione.
+                Video recordings of the problem are posted to Solvether and
+                categorized. The community then votes on the problems they want
+                to solve. Problems with the most community interest are selected
+                for resolution.
               </dd>
             </div>
 
             <div className="relative">
               <dt>
-                <div className="absolute flex items-center justify-center w-12 h-12 text-white bg-indigo-500 rounded-md">
-                  <svg
-                    className="w-6 h-6"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="2"
-                    stroke="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"
-                    />
-                  </svg>
+                <div className="absolute flex items-center justify-center w-12 h-12 text-xl font-bold text-white bg-indigo-500 rounded-md">
+                  2
                 </div>
                 <p className="ml-16 text-lg font-medium leading-6 text-gray-900">
-                  No hidden fees
+                  Solve a Problem
                 </p>
               </dt>
               <dd className="mt-2 ml-16 text-base text-gray-500">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Maiores impedit perferendis suscipit eaque, iste dolor
-                cupiditate blanditiis ratione.
+                Select a problem that interests you and join a video meeting
+                with other community members dedicated to solving it. Hear other
+                solutions and add yours as well. The best solutions will be
+                eligible for rewards.
               </dd>
             </div>
 
             <div className="relative">
               <dt>
-                <div className="absolute flex items-center justify-center w-12 h-12 text-white bg-indigo-500 rounded-md">
-                  <svg
-                    className="w-6 h-6"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="2"
-                    stroke="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M13 10V3L4 14h7v7l9-11h-7z"
-                    />
-                  </svg>
+                <div className="absolute flex items-center justify-center w-12 h-12 text-xl font-bold text-white bg-indigo-500 rounded-md">
+                  3
                 </div>
                 <p className="ml-16 text-lg font-medium leading-6 text-gray-900">
-                  Transfers are instant
+                  Select the Best Solutions
                 </p>
               </dt>
               <dd className="mt-2 ml-16 text-base text-gray-500">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Maiores impedit perferendis suscipit eaque, iste dolor
-                cupiditate blanditiis ratione.
+                Together, the problem sponsors and the community review
+                solutions and rank them via vote.
               </dd>
             </div>
 
             <div className="relative">
               <dt>
-                <div className="absolute flex items-center justify-center w-12 h-12 text-white bg-indigo-500 rounded-md">
-                  <svg
-                    className="w-6 h-6"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="2"
-                    stroke="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
-                    />
-                  </svg>
+                <div className="absolute flex items-center justify-center w-12 h-12 text-xl font-bold text-white bg-indigo-500 rounded-md">
+                  4
                 </div>
                 <p className="ml-16 text-lg font-medium leading-6 text-gray-900">
-                  Mobile notifications
+                  Network & Earn Rewards
                 </p>
               </dt>
               <dd className="mt-2 ml-16 text-base text-gray-500">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Maiores impedit perferendis suscipit eaque, iste dolor
-                cupiditate blanditiis ratione.
+                Solvether will provide many opportunities to network and earn
+                rewards. Find common interests with community members that share
+                a similar problem and earn rewards through your participation in
+                the community.
               </dd>
             </div>
           </dl>

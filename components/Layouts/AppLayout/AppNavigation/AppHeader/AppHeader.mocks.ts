@@ -1,4 +1,4 @@
-import { IHeader } from './Header';
+import { IHeader } from './AppHeader';
 
 const base: IHeader = {
   navigation: [
@@ -14,12 +14,6 @@ const base: IHeader = {
     { name: 'Profile', href: '#' },
     { name: 'Settings', href: '#' },
   ],
-  user: {
-    name: 'Michael Mowry',
-    email: 'michael.mowry@stellence.com',
-    imageUrl:
-      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-  },
 };
 
 export const mockHeaderProps = {

@@ -1,10 +1,10 @@
-export interface IFooter extends React.ComponentPropsWithoutRef<'footer'> {}
+export interface ISiteFooter extends React.ComponentPropsWithoutRef<'footer'> {}
 
-const Footer: React.FC<IFooter> = ({ className, ...footerProps }) => {
+const SiteFooter: React.FC<ISiteFooter> = ({ className, ...footerProps }) => {
   return (
-    <footer className="p-4 bg-white sm:p-6 dark:bg-gray-900">
+    <footer className="min-w-full p-4 bg-white sm:p-6 dark:bg-gray-900">
       <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-      <div className="md:flex md:justify-between">
+      <div className="justify-center md:flex">
         <div className="grid grid-cols-3 gap-8 sm:gap-6">
           <div>
             <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
@@ -97,4 +97,4 @@ const Footer: React.FC<IFooter> = ({ className, ...footerProps }) => {
   );
 };
 
-export default Footer;
+export default SiteFooter;

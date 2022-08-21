@@ -1,17 +1,10 @@
 import Head from 'next/head';
-import Footer from '../navigation/footer/Footer';
-import Header from '../navigation/header/Header';
+import AppFooter from './AppNavigation/AppFooter/AppFooter';
+import AppHeader from './AppNavigation/AppHeader/AppHeader';
 
 export interface IAppLayout extends React.ComponentPropsWithoutRef<'div'> {
   justify?: 'items-center' | 'items-start';
 }
-
-const duser = {
-  name: 'Michael Mowry',
-  email: 'michael.mowry@stellence.com',
-  imageUrl:
-    'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-};
 
 const dnavigation = [
   { name: 'Dashboard', href: '/dashboard', current: false },
@@ -38,14 +31,10 @@ const AppLayout: React.FC<IAppLayout> = ({
       <Head>
         <title>Solvether</title>
       </Head>
-      <div {...divProps} className={`min-h-screen flex flex-col ${justify}`}>
-        <Header
-          user={duser}
-          navigation={dnavigation}
-          userNavigation={duserNavigation}
-        />
-        <main className="min-w-full min-h-full px-5">{children}</main>
-        <Footer />
+      <div {...divProps} className={`flex flex-col ${justify}`}>
+        <AppHeader navigation={dnavigation} userNavigation={duserNavigation} />
+        <main className="min-w-full px-5">{children}</main>
+        <AppFooter />
       </div>
     </>
   );

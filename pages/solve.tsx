@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import AppLayout from '../components/layouts/app/AppLayout';
+import AppLayout from '../components/Layouts/AppLayout/AppLayout';
 import { NextPageWithLayout } from './page';
 
 const Solve: NextPageWithLayout = () => {
