@@ -4,6 +4,6 @@ const base: ISiteHeader = {
   sampleTextProp: 'Hello world!',
 };
 
-export const mockHeaderProps = {
+export const mockSiteHeaderProps = {
   base,
 };

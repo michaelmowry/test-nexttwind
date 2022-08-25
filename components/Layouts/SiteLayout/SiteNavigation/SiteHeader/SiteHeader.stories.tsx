@@ -1,20 +1,22 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import Header, { IHeader } from './SiteHeader';
-import { mockHeaderProps } from './SiteHeader.mocks';
+import SiteHeader, { ISiteHeader } from './SiteHeader';
+import { mockSiteHeaderProps } from './SiteHeader.mocks';
 
 export default {
-  title: 'navigation/Header',
-  component: Header,
+  title: 'navigation/SiteHeader',
+  component: SiteHeader,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {},
-} as ComponentMeta<typeof Header>;
+} as ComponentMeta<typeof SiteHeader>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof Header> = (args) => <Header {...args} />;
+const Template: ComponentStory<typeof SiteHeader> = (args) => (
+  <SiteHeader {...args} />
+);
 
 export const Base = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 
 Base.args = {
-  ...mockHeaderProps.base,
-} as IHeader;
+  ...mockSiteHeaderProps.base,
+} as ISiteHeader;

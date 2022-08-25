@@ -1,16 +1,18 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import Footer, { IFooter } from './AppFooter';
+import AppFooter, { IAppFooter } from './AppFooter';
 
 export default {
   title: 'navigation/Footer',
-  component: Footer,
+  component: AppFooter,
   parameters: {
     // More on Story layout: https://storybook.js.org/docs/react/configure/story-layout
     layout: 'fullscreen',
   },
-} as ComponentMeta<typeof Footer>;
+} as ComponentMeta<typeof AppFooter>;
 
-const Template: ComponentStory<typeof Footer> = (args) => <Footer {...args} />;
+const Template: ComponentStory<typeof AppFooter> = (args) => (
+  <AppFooter {...args} />
+);
 
 export const Base = Template.bind({});
-Base.args = {} as IFooter;
+Base.args = {} as IAppFooter;

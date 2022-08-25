@@ -9,12 +9,15 @@ interface AppPropsWithLayout extends AppProps {
   Component: NextPageWithLayout;
 }
 
-export default function App({ Component, pageProps }: AppPropsWithLayout) {
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}: AppPropsWithLayout) {
   // Use the layout defined at the page level, if available
   const getLayout = Component.getLayout || ((page) => page);
 
   return (
-    <SessionProvider session={pageProps.session} refetchInterval={0}>
+    <SessionProvider session={session} refetchInterval={0}>
       {Component.auth ? (
         <Auth>{getLayout(<Component {...pageProps} />)}</Auth>
       ) : (
@@ -24,14 +27,16 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
   );
 }
 
-function Auth({ children }) {
+//Comeback to this children destructuring later and see if you knew what you were doing
+function Auth({ children }: { children: any }) {
   const router = useRouter();
-  const { data: session, status, token } = useSession();
+  const { data: session, status } = useSession();
   const isUser = !!session?.user;
+
   useEffect(() => {
     if (status === 'loading') return; // Do nothing while loading
     if (!isUser) router.push('/login'); //Redirect to login
-  }, [isUser, status]);
+  }, [isUser, status, router]);
 
   if (isUser) {
     return children;

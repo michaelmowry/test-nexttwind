@@ -1,6 +1,6 @@
-import { IAppFooter } from './SiteFooter';
+import { ISiteFooter } from './SiteFooter';
 
-const base: IAppFooter = {};
+const base: ISiteFooter = {};
 
 export const mockFooterProps = {
   base,
