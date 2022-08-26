@@ -149,3 +149,9 @@ export async function getServerSideProps(context) {
     props: { providers },
   };
 }
+
+Login.auth = false;
+
+Login.getLayout = (page) => {
+  return { page };
+};

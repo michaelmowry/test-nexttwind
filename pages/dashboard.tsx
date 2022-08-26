@@ -1,13 +1,9 @@
-import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import AppLayout from '../components/Layouts/AppLayout/AppLayout';
 import { NextPageWithLayout } from './page';
 
 const Dashboard: NextPageWithLayout = () => {
   const { locale } = useRouter();
-  const { data: session, status } = useSession();
-  console.log(status);
-  const router = useRouter();
 
   return (
     <>

@@ -27,7 +27,7 @@ export default function App({
   );
 }
 
-//Comeback to this children destructuring later and see if you knew what you were doing
+//Hack - Comeback to this children destructuring later and see if you knew what you were doing
 function Auth({ children }: { children: any }) {
   const router = useRouter();
   const { data: session, status } = useSession();

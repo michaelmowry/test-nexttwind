@@ -1,6 +1,6 @@
-import { IHeader } from './AppHeader';
+import { IAppHeader } from './AppHeader';
 
-const base: IHeader = {
+const base: IAppHeader = {
   navigation: [
     { name: 'Dashboard', href: '#', current: true },
     { name: 'Solve', href: '#', current: false },

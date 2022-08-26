@@ -21,12 +21,12 @@ function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ');
 }
 
-export interface IHeader {
+export interface IAppHeader {
   navigation: tnavigation[] | null;
   userNavigation: tuserNavigation[] | null;
 }
 
-const Header: React.FC<IHeader> = ({ navigation, userNavigation }) => {
+const AppHeader: React.FC<IAppHeader> = ({ navigation, userNavigation }) => {
   //const [loggedIn, setLoggedIn] = useState(false);
   const { data: session } = useSession();
 
@@ -243,4 +243,4 @@ const Header: React.FC<IHeader> = ({ navigation, userNavigation }) => {
   );
 };
 
-export default Header;
+export default AppHeader;

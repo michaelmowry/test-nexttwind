@@ -101,3 +101,5 @@ export default Home;
 Home.getLayout = (page) => {
   return <SiteLayout>{page}</SiteLayout>;
 };
+
+Home.auth = false;
