@@ -1,0 +1,11 @@
+// https://indralukmana.com/posts/nextjs-note-removing-console-logs-on-production
+// Removes console logs from production builds
+{
+  "presets": ["next/babel"]
+
+  // "env": {
+  //   "production": {
+  //     "plugins": ["transform-remove-console"]
+  //   }
+  // }
+}

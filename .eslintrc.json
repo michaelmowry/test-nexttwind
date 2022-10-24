@@ -3,7 +3,8 @@
     "next",
     "next/core-web-vitals",
     "eslint:recommended",
-    "plugin:storybook/recommended"
+    "plugin:storybook/recommended",
+    "plugin:react-hooks/recommended"
   ],
   "globals": {
     "React": "readonly"
@@ -23,6 +24,7 @@
   "rules": {
     // Other rules
     "@next/next/no-img-element": "off",
-    "no-unused-vars": "off"
+    "no-unused-vars": "off",
+    "react/no-unescaped-entities": 0
   }
 }

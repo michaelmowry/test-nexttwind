@@ -1,7 +1,7 @@
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
-  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+  provider             = "mysql"
+  url                  = env("DATABASE_URL")
+  shadowDatabaseUrl    = env("SHADOW_DATABASE_URL")
   referentialIntegrity = "prisma"
 }
 
@@ -11,18 +11,18 @@ generator client {
 }
 
 model Account {
-  id                 String  @id @default(cuid())
-  userId             String
-  type               String
-  provider           String
-  providerAccountId  String
-  refresh_token      String?  @db.Text
-  access_token       String?  @db.Text
-  expires_at         Int?
-  token_type         String?
-  scope              String?
-  id_token           String?  @db.Text
-  session_state      String?
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -38,13 +38,19 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime?
-  image         String?
-  accounts      Account[]
-  sessions      Session[]
+  id                      String         @id @default(cuid())
+  name                    String
+  email                   String         @unique
+  password                String
+  emailVerificationSentOn DateTime       @default(now())
+  emailVerifiedOn         DateTime?
+  image                   String?
+  createdAt               DateTime       @default(now())
+  updatedAt               DateTime       @updatedAt
+  accounts                Account[]
+  sessions                Session[]
+  SolveSession            SolveSession[]
+  Problem                 Problem[]
 }
 
 model VerificationToken {
@@ -53,4 +59,40 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model SolveSession {
+  id         String    @id @default(cuid())
+  userId     String
+  createdAt  DateTime  @default(now())
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  Problem    Problem   @relation(fields: [problemId], references: [id])
+  problemId  String
+  Protocol   Protocol? @relation(fields: [protocolId], references: [id])
+  protocolId String?
+}
+
+model Problem {
+  id           String         @id @default(cuid())
+  userId       String
+  imageURL     String
+  headline     String
+  description  String         @db.Text
+  background   String         @db.Text
+  createdAt    DateTime       @default(now())
+  createdBy    User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  SolveSession SolveSession[]
+}
+
+model Protocol {
+  id                String         @id @default(cuid())
+  duration          DateTime
+  participantFee    Decimal        @db.Decimal(10, 2)
+  judgeFee          Decimal        @db.Decimal(10, 2)
+  solvetherFee      Decimal        @db.Decimal(10, 2)
+  rewardPool        Decimal        @db.Decimal(10, 2)
+  judgeNumber       Int
+  participantNumber Int
+  audienceAllowed   Boolean
+  SolveSession      SolveSession[]
 }
